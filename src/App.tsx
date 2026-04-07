@@ -34,27 +34,15 @@ const FadeIn = ({ children, delay = 0, className = "", ...props }: { children: R
 );
 
 export default function App() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalType, setModalType] = useState<{ title: string, subtitle: string }>({ 
-    title: "Comienza tu viaje hoy", 
-    subtitle: "Registrate para recibir acceso anticipado y una clase de introducción gratuita." 
-  });
+
 
   const { scrollY } = useScroll();
   const y1 = useTransform(scrollY, [0, 1000], [0, 300]);
   const y2 = useTransform(scrollY, [0, 1000], [0, -250]);
   const y3 = useTransform(scrollY, [0, 1000], [0, 150]);
 
-  const openForm = (title?: string, subtitle?: string) => {
-    if (title && subtitle) {
-      setModalType({ title, subtitle });
-    } else {
-      setModalType({ 
-        title: "Comienza tu viaje hoy", 
-        subtitle: "Registrate para recibir acceso anticipado y una clase de introducción gratuita." 
-      });
-    }
-    setIsModalOpen(true);
+  const openForm = () => {
+    window.open('/informacion.html', '_blank');
   };
 
   return (
@@ -64,26 +52,7 @@ export default function App() {
       <div className="fixed inset-0 z-0 opacity-[0.03] pointer-events-none" 
            style={{ backgroundImage: 'radial-gradient(#000 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
 
-      {/* Modal */}
-      <AnimatePresence>
-        {isModalOpen && (
-          <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-neutral-950/40 backdrop-blur-sm">
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setIsModalOpen(false)}
-              className="absolute inset-0"
-            />
-            <LeadForm 
-              variant="modal" 
-              onClose={() => setIsModalOpen(false)} 
-              title={modalType.title}
-              subtitle={modalType.subtitle}
-            />
-          </div>
-        )}
-      </AnimatePresence>
+
 
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-[#FAFAFA]/80 backdrop-blur-md border-b border-neutral-200/50">
@@ -128,7 +97,7 @@ export default function App() {
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
                 </span>
-                Edición Mayo 2024 • Cupos Limitados
+                Edición Mayo 2026 • Cupos Limitados
               </div>
               <h1 className="text-5xl md:text-8xl font-bold tracking-tighter leading-[0.95] text-neutral-900">
                 Aprendé IA <br className="hidden md:block" />
@@ -175,7 +144,7 @@ export default function App() {
               El mundo avanza rápido. Muchos se sienten abrumados por la cantidad de información desordenada. En EscuelitaIA te damos el mapa.
             </p>
             <button 
-              onClick={() => openForm("Quiero dejar de perder tiempo", "Unite a la comunidad y empezá a dominar las herramientas hoy mismo.")}
+              onClick={() => openForm()}
               className="group flex items-center gap-3 text-lg font-bold bg-white border border-neutral-200 px-8 py-4 rounded-2xl hover:bg-neutral-50 transition-all shadow-sm active:scale-95"
             >
               Empezar mi transformación
@@ -217,7 +186,7 @@ export default function App() {
                 Sin teoría aburrida. Vas a crear, automatizar y optimizar desde el primer encuentro.
               </p>
               <button 
-                onClick={() => openForm("Quiero el método práctico", "Anotate para recibir el programa completo de los cursos.")}
+                onClick={() => openForm()}
                 className="bg-blue-600 hover:bg-blue-500 text-white px-10 py-5 rounded-2xl text-lg font-bold shadow-2xl shadow-blue-900/40 hover:scale-[1.02] active:scale-95 transition-all flex items-center gap-3"
               >
                 Inscribirme ahora
@@ -284,13 +253,21 @@ export default function App() {
                 color: "emerald",
                 span: "lg:col-span-2"
               },
-            ].map((item, i) => (
+            ].map((item, i) => {
+              const colors = {
+                blue: { bg: "bg-blue-50", text: "text-blue-500", blob: "bg-blue-100" },
+                purple: { bg: "bg-purple-50", text: "text-purple-500", blob: "bg-purple-100" },
+                pink: { bg: "bg-pink-50", text: "text-pink-500", blob: "bg-pink-100" },
+                emerald: { bg: "bg-emerald-50", text: "text-emerald-500", blob: "bg-emerald-100" },
+              }[item.color as keyof typeof colors] || { bg: "bg-gray-50", text: "text-gray-500", blob: "bg-gray-100" };
+
+              return (
               <FadeIn 
                 key={item.id} 
                 delay={i * 0.1} 
                 className={`${item.span || ""} bg-white rounded-[3rem] p-10 border border-neutral-100 shadow-sm hover:shadow-2xl hover:shadow-neutral-900/5 transition-all flex flex-col justify-between group overflow-hidden relative cursor-default`}
               >
-                <div className={`w-16 h-16 rounded-[1.5rem] bg-${item.color}-50 flex items-center justify-center text-${item.color}-500 group-hover:scale-110 transition-transform relative z-10`}>
+                <div className={`w-16 h-16 rounded-[1.5rem] ${colors.bg} flex items-center justify-center ${colors.text} group-hover:scale-110 transition-transform relative z-10`}>
                   <item.icon className="w-8 h-8" />
                 </div>
                 <div className="relative z-10 space-y-6">
@@ -300,7 +277,7 @@ export default function App() {
                     <p className="text-neutral-500 text-lg leading-relaxed">{item.desc}</p>
                   </div>
                   <button 
-                    onClick={() => openForm(`Información sobre ${item.title}`, "Dejanos tus datos y te enviamos el programa detallado y costos.")}
+                    onClick={() => openForm()}
                     className="flex items-center gap-2 text-sm font-bold text-neutral-400 group-hover:text-neutral-900 transition-all uppercase tracking-widest group-hover:gap-4"
                   >
                     Me interesa este curso
@@ -309,9 +286,9 @@ export default function App() {
                 </div>
                 
                 {/* Decorative blob */}
-                <div className={`absolute -bottom-10 -right-10 w-32 h-32 bg-${item.color}-100 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity`} />
+                <div className={`absolute -bottom-10 -right-10 w-32 h-32 ${colors.blob} rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity`} />
               </FadeIn>
-            ))}
+            )})}
           </div>
         </section>
 
@@ -364,7 +341,7 @@ export default function App() {
                   ))}
                 </ul>
                 <button 
-                  onClick={() => openForm("Quiero transformar mi rutina", "Empezá hoy mismo el curso y ganá horas reales de vida.")}
+                  onClick={() => openForm()}
                   className="mt-10 w-full py-4 bg-white text-neutral-900 rounded-2xl font-bold text-lg hover:bg-neutral-100 transition-all flex items-center justify-center gap-3 active:scale-95"
                 >
                   Quiero este cambio
@@ -405,7 +382,7 @@ export default function App() {
 
           <FadeIn>
             <button 
-              onClick={() => openForm("Unirme a EscuelitaIA", "Iniciá tu registro y asegurá tu lugar en la próxima cohorte.")}
+              onClick={() => openForm()}
               className="bg-neutral-900 text-white px-12 py-5 rounded-full text-xl font-bold hover:scale-105 active:scale-95 transition-all shadow-2xl shadow-neutral-900/20"
             >
               Comenzar ahora
@@ -421,7 +398,7 @@ export default function App() {
               <div className="absolute inset-0 bg-neutral-900 rounded-[4rem] -rotate-3 group-hover:rotate-0 transition-transform shadow-2xl" />
               <div className="w-full h-full bg-neutral-100 rounded-[4rem] overflow-hidden border-4 border-white flex items-center justify-center relative">
                 <img 
-                  src="/Users/tunuyan/.gemini/antigravity/brain/62bfff9d-ec6e-45d6-b597-2bbf085341d2/media__1775510289121.jpg" 
+                  src="/director.png" 
                   alt="Marcos Perez Linares" 
                   className="w-full h-full object-cover"
                 />
@@ -441,7 +418,11 @@ export default function App() {
             <FadeIn className="space-y-8">
               <div className="space-y-4">
                 <div className="text-sm font-black tracking-[0.2em] text-blue-600 uppercase">El Director</div>
-                <h2 className="text-4xl md:text-6xl font-bold tracking-tight">Marcos Perez Linares</h2>
+                <h2 className="text-4xl md:text-6xl font-bold tracking-tight hover:text-blue-600 transition-colors cursor-pointer">
+                  <a href="/cv-marcos-perez-linares.pdf" target="_blank" rel="noopener noreferrer">
+                    Marcos Perez Linares
+                  </a>
+                </h2>
               </div>
               <p className="text-xl text-neutral-600 leading-relaxed">
                 Especialista en IA y educación, Marcos fundó EscuelitaIA con una misión clara: <span className="text-neutral-900 font-bold">humanizar la tecnología.</span>
@@ -456,7 +437,7 @@ export default function App() {
               </div>
               <div className="flex flex-wrap gap-4 pt-4">
                 <button 
-                  onClick={() => openForm("Hablar con Marcos", "Ingresa tus datos y Marcos o alguien del equipo te contactará por WhatsApp.")}
+                  onClick={() => openForm()}
                   className="flex items-center gap-3 bg-white border border-neutral-200 px-8 py-4 rounded-2xl font-bold hover:bg-neutral-50 transition-all shadow-sm group active:scale-95"
                 >
                   <MessageCircle className="w-5 h-5 text-blue-500" />
@@ -497,7 +478,7 @@ export default function App() {
           <FadeIn className="text-center">
             <p className="text-neutral-400 font-medium mb-6">¿Tenés otra pregunta específica?</p>
             <button 
-              onClick={() => openForm("Tengo una consulta específica", "Dejanos tu duda y te responderemos a la brevedad.")}
+              onClick={() => openForm()}
               className="text-neutral-900 font-bold border-b-2 border-neutral-900 pb-1 hover:text-blue-600 hover:border-blue-600 transition-all"
             >
               Contactanos directamente
@@ -514,7 +495,7 @@ export default function App() {
             <div className="relative z-10 grid lg:grid-cols-2 gap-20 items-center">
               <div className="space-y-12">
                 <FadeIn className="space-y-8">
-                  <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-xs font-black uppercase tracking-widest text-blue-400">Cupos Limitados Mayo 2024</div>
+                  <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-xs font-black uppercase tracking-widest text-blue-400">Cupos Limitados Mayo 2026</div>
                   <h2 className="text-5xl md:text-8xl font-bold tracking-tighter leading-[0.9]">
                     No dejes <br />
                     que el futuro <br />
@@ -557,7 +538,7 @@ export default function App() {
             <p className="text-neutral-500 max-w-sm">Dando las herramientas para que el futuro sea una oportunidad y no una amenaza.</p>
             <div className="flex justify-center md:justify-start gap-4">
               <button 
-                onClick={() => openForm("Suscribirme al Newsletter", "Recibí tips semanales sobre IA y educación.")}
+                onClick={() => openForm()}
                 className="text-sm font-bold bg-neutral-50 hover:bg-neutral-100 px-6 py-3 rounded-xl transition-all"
               >
                 Suscribirme al Newsletter
