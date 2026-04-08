@@ -41,8 +41,12 @@ export default function App() {
   const y2 = useTransform(scrollY, [0, 1000], [0, -250]);
   const y3 = useTransform(scrollY, [0, 1000], [0, 150]);
 
-  const openForm = () => {
-    window.open('/informacion.html', '_blank');
+  const scrollToForm = () => {
+    document.getElementById('cta')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const openInfo = () => {
+    window.location.href = '/informacion.html';
   };
 
   return (
@@ -62,7 +66,7 @@ export default function App() {
             Escuelita IA
           </div>
           <button 
-            onClick={() => openForm()}
+            onClick={() => scrollToForm()}
             className="text-sm font-bold bg-neutral-900 text-white px-6 py-2.5 rounded-full hover:scale-105 hover:shadow-xl hover:shadow-neutral-900/20 active:scale-95 transition-all duration-300"
           >
             Inscribite
@@ -144,7 +148,7 @@ export default function App() {
               El mundo avanza rápido. Muchos se sienten abrumados por la cantidad de información desordenada. En EscuelitaIA te damos el mapa.
             </p>
             <button 
-              onClick={() => openForm()}
+              onClick={() => scrollToForm()}
               className="group flex items-center gap-3 text-lg font-bold bg-white border border-neutral-200 px-8 py-4 rounded-2xl hover:bg-neutral-50 transition-all shadow-sm active:scale-95"
             >
               Empezar mi transformación
@@ -186,7 +190,7 @@ export default function App() {
                 Sin teoría aburrida. Vas a crear, automatizar y optimizar desde el primer encuentro.
               </p>
               <button 
-                onClick={() => openForm()}
+                onClick={() => scrollToForm()}
                 className="bg-blue-600 hover:bg-blue-500 text-white px-10 py-5 rounded-2xl text-lg font-bold shadow-2xl shadow-blue-900/40 hover:scale-[1.02] active:scale-95 transition-all flex items-center gap-3"
               >
                 Inscribirme ahora
@@ -277,7 +281,7 @@ export default function App() {
                     <p className="text-neutral-500 text-lg leading-relaxed">{item.desc}</p>
                   </div>
                   <button 
-                    onClick={() => openForm()}
+                    onClick={() => openInfo()}
                     className="flex items-center gap-2 text-sm font-bold text-neutral-400 group-hover:text-neutral-900 transition-all uppercase tracking-widest group-hover:gap-4"
                   >
                     Me interesa este curso
@@ -341,7 +345,7 @@ export default function App() {
                   ))}
                 </ul>
                 <button 
-                  onClick={() => openForm()}
+                  onClick={() => scrollToForm()}
                   className="mt-10 w-full py-4 bg-white text-neutral-900 rounded-2xl font-bold text-lg hover:bg-neutral-100 transition-all flex items-center justify-center gap-3 active:scale-95"
                 >
                   Quiero este cambio
@@ -382,7 +386,7 @@ export default function App() {
 
           <FadeIn>
             <button 
-              onClick={() => openForm()}
+              onClick={() => scrollToForm()}
               className="bg-neutral-900 text-white px-12 py-5 rounded-full text-xl font-bold hover:scale-105 active:scale-95 transition-all shadow-2xl shadow-neutral-900/20"
             >
               Comenzar ahora
@@ -437,7 +441,7 @@ export default function App() {
               </div>
               <div className="flex flex-wrap gap-4 pt-4">
                 <button 
-                  onClick={() => openForm()}
+                  onClick={() => window.open('https://wa.me/?text=Hola%20quiero%20más%20información%20sobre%20EscuelitaIA', '_blank')}
                   className="flex items-center gap-3 bg-white border border-neutral-200 px-8 py-4 rounded-2xl font-bold hover:bg-neutral-50 transition-all shadow-sm group active:scale-95"
                 >
                   <MessageCircle className="w-5 h-5 text-blue-500" />
@@ -478,7 +482,7 @@ export default function App() {
           <FadeIn className="text-center">
             <p className="text-neutral-400 font-medium mb-6">¿Tenés otra pregunta específica?</p>
             <button 
-              onClick={() => openForm()}
+              onClick={() => scrollToForm()}
               className="text-neutral-900 font-bold border-b-2 border-neutral-900 pb-1 hover:text-blue-600 hover:border-blue-600 transition-all"
             >
               Contactanos directamente
@@ -538,7 +542,7 @@ export default function App() {
             <p className="text-neutral-500 max-w-sm">Dando las herramientas para que el futuro sea una oportunidad y no una amenaza.</p>
             <div className="flex justify-center md:justify-start gap-4">
               <button 
-                onClick={() => openForm()}
+                onClick={() => scrollToForm()}
                 className="text-sm font-bold bg-neutral-50 hover:bg-neutral-100 px-6 py-3 rounded-xl transition-all"
               >
                 Suscribirme al Newsletter
