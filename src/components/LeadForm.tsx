@@ -35,13 +35,15 @@ export default function LeadForm({
         timestamp: serverTimestamp(),
         source: variant // para saber de qué parte de la landing vino
       });
-      
       setStatus("success");
-      if (variant === "modal") {
-        setTimeout(() => {
+      
+      // Redirect after showing the success message briefly
+      setTimeout(() => {
+        window.location.href = '/informacion.html';
+        if (variant === "modal") {
           onClose?.();
-        }, 3000);
-      }
+        }
+      }, 2000);
     } catch (error: any) {
       console.error("Error capturing lead:", error);
       setStatus("error");
