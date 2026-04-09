@@ -19,6 +19,7 @@ import {
   Users
 } from "lucide-react";
 import LeadForm from "./components/LeadForm";
+import BookingCalendar from "./components/BookingCalendar";
 
 const FadeIn = ({ children, delay = 0, className = "", ...props }: { children: React.ReactNode, delay?: number, className?: string, [key: string]: any }) => (
   <motion.div
@@ -491,6 +492,9 @@ export default function App() {
             </button>
           </FadeIn>
         </section>
+
+        {/* BOOKING CALENDAR */}
+        <BookingCalendar />
 
         {/* 7. FINAL CTA */}
         <section id="cta" className="relative group">
