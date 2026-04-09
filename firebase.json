@@ -18,5 +18,13 @@
         "destination": "/index.html"
       }
     ]
+  },
+  "auth": {
+    "providers": {
+      "googleSignIn": {
+        "oAuthBrandDisplayName": "EscuelitaIA",
+        "supportEmail": "mperezauge@gmail.com"
+      }
+    }
   }
 }
