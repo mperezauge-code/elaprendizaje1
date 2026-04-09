@@ -35,6 +35,7 @@ const FadeIn = ({ children, delay = 0, className = "", ...props }: { children: R
 
 export default function App() {
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const { scrollY } = useScroll();
   const y1 = useTransform(scrollY, [0, 1000], [0, 300]);
@@ -46,7 +47,8 @@ export default function App() {
   };
 
   const openInfo = () => {
-    window.location.href = '/informacion.html';
+    // window.location.href = '/informacion.html';
+    setIsModalOpen(true);
   };
 
   return (
@@ -441,11 +443,11 @@ export default function App() {
               </div>
               <div className="flex flex-wrap gap-4 pt-4">
                 <button 
-                  onClick={() => window.open('https://wa.me/?text=Hola%20quiero%20más%20información%20sobre%20EscuelitaIA', '_blank')}
+                  onClick={() => setIsModalOpen(true)}
                   className="flex items-center gap-3 bg-white border border-neutral-200 px-8 py-4 rounded-2xl font-bold hover:bg-neutral-50 transition-all shadow-sm group active:scale-95"
                 >
                   <MessageCircle className="w-5 h-5 text-blue-500" />
-                  Consultar por WhatsApp
+                  Consultar información
                 </button>
               </div>
             </FadeIn>
@@ -556,6 +558,34 @@ export default function App() {
           </FadeIn>
         </div>
       </footer>
+
+      {/* LEAD MODAL */}
+      <AnimatePresence>
+        {isModalOpen && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-6">
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsModalOpen(false)}
+              className="absolute inset-0 bg-neutral-900/40 backdrop-blur-sm"
+            />
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              className="relative z-10 w-full max-w-lg"
+            >
+              <LeadForm 
+                variant="modal" 
+                onClose={() => setIsModalOpen(false)}
+                title="¿Te interesa este módulo?"
+                subtitle="Dejanos tus datos para enviarte el programa detallado y el costo de la próxima edición."
+              />
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
