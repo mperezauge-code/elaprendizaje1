@@ -425,6 +425,7 @@ export default function App() {
                 <div className="text-sm font-black tracking-[0.2em] text-blue-600 uppercase">El Director</div>
                 <h2 className="text-4xl md:text-6xl font-bold tracking-tight hover:text-blue-600 transition-colors cursor-pointer">
                   <a href="/cv-marcos-perez-linares.pdf" target="_blank" rel="noopener noreferrer">
+                    {/* Nombre sin acento según pedido del usuario */}
                     Marcos Perez Linares
                   </a>
                 </h2>
