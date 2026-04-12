@@ -153,7 +153,7 @@ export default function LeadForm({
             {title || (isDark ? 'Comienza tu viaje hoy' : 'Da el primer paso')}
           </h3>
           <p className={`text-base ${isDark ? 'text-neutral-300' : 'text-neutral-500'}`}>
-            {subtitle || 'Registrate para recibir acceso anticipado y una clase de introducción gratuita.'}
+            {subtitle || 'Dejanos tus datos para evaluar tu admisión y contactarte a la brevedad.'}
           </p>
         </div>
 
@@ -228,6 +228,7 @@ export default function LeadForm({
             </div>
             <input
               type="tel"
+              required
               value={formData.phone}
               onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
               className={`w-full pl-11 pr-4 py-4 rounded-2xl text-base font-medium transition-all outline-none ${
@@ -235,7 +236,7 @@ export default function LeadForm({
                   ? 'bg-white/10 text-white placeholder-white/40 focus:bg-white/20 focus:ring-2 focus:ring-white/30 border border-transparent' 
                   : 'bg-neutral-50 text-neutral-900 placeholder-neutral-400 focus:bg-white focus:ring-2 focus:ring-neutral-200 border border-neutral-200'
               }`}
-              placeholder="Tu WhatsApp (Opcional)"
+              placeholder="Tu WhatsApp *"
             />
           </div>
           
@@ -288,7 +289,7 @@ export default function LeadForm({
           )}
         </button>
         <p className={`text-sm text-center mt-6 ${isDark ? 'text-neutral-400' : 'text-neutral-400'}`}>
-          No enviamos spam. Tus datos están seguros.
+          Te contactaremos por WhatsApp en función de las admisiones.
         </p>
       </motion.form>
     </div>

@@ -19,7 +19,6 @@ import {
   Users
 } from "lucide-react";
 import LeadForm from "./components/LeadForm";
-import BookingCalendar from "./components/BookingCalendar";
 
 const FadeIn = ({ children, delay = 0, className = "", ...props }: { children: React.ReactNode, delay?: number, className?: string, [key: string]: any }) => (
   <motion.div
@@ -44,12 +43,11 @@ export default function App() {
   const y3 = useTransform(scrollY, [0, 1000], [0, 150]);
 
   const scrollToForm = () => {
-    document.getElementById('cta')?.scrollIntoView({ behavior: 'smooth' });
+    document.getElementById('agendar')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   const openInfo = () => {
-    // window.location.href = '/informacion.html';
-    setIsModalOpen(true);
+    document.getElementById('agendar')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
@@ -493,8 +491,6 @@ export default function App() {
           </FadeIn>
         </section>
 
-        {/* BOOKING CALENDAR */}
-        <BookingCalendar />
 
         {/* 7. FINAL CTA */}
         <section id="cta" className="relative group">
@@ -549,9 +545,9 @@ export default function App() {
             <div className="flex justify-center md:justify-start gap-4">
               <button 
                 onClick={() => scrollToForm()}
-                className="text-sm font-bold bg-neutral-50 hover:bg-neutral-100 px-6 py-3 rounded-xl transition-all"
+                className="text-sm font-bold bg-neutral-900 text-white hover:bg-neutral-700 px-6 py-3 rounded-xl transition-all"
               >
-                Suscribirme al Newsletter
+                Solicitar admisión
               </button>
             </div>
           </FadeIn>

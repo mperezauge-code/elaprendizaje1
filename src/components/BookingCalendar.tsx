@@ -2,11 +2,22 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   ArrowRight, ArrowLeft, CheckCircle2, Loader2, Mail, User, Phone, 
-  Calendar, Clock, Users, X, Sparkles, AlertCircle 
+  Calendar, Clock, Users, X, AlertCircle 
 } from 'lucide-react';
 import { collection, addDoc, serverTimestamp, query, where, getDocs } from 'firebase/firestore';
 import { signInWithPopup } from 'firebase/auth';
 import { db, auth, googleProvider } from '../lib/firebase';
+import emailjs from '@emailjs/browser';
+
+// ─── EmailJS config ─────────────────────────────────────────────────────────
+// 1. Crear cuenta gratis en https://www.emailjs.com (200 emails/mes gratis)
+// 2. Crear un Email Service (Gmail) → copiar Service ID abajo
+// 3. Crear un Email Template con estas variables:
+//    {{to_name}}, {{to_email}}, {{day}}, {{time}}, {{price}}, {{reply_to}}
+// 4. Copiar Public Key de Account → API Keys
+const EMAILJS_SERVICE_ID  = import.meta.env.VITE_EMAILJS_SERVICE_ID  || 'YOUR_SERVICE_ID';
+const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'YOUR_TEMPLATE_ID';
+const EMAILJS_PUBLIC_KEY  = import.meta.env.VITE_EMAILJS_PUBLIC_KEY  || 'YOUR_PUBLIC_KEY';
 
 const DAYS = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes'];
 const TIME_SLOTS = ['15:00', '16:00', '17:00', '18:00', '19:00'];
