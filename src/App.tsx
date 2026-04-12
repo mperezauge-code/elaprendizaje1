@@ -89,6 +89,19 @@ export default function App() {
               style={{ y: y2 }} 
               className="absolute top-32 -right-32 w-[32rem] h-[32rem] bg-purple-400/10 rounded-full blur-3xl"
             />
+            {/* Added AI Animation Background */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 0.15, scale: 1 }}
+              transition={{ duration: 2, ease: "easeOut" }}
+              className="absolute inset-0 flex items-center justify-center opacity-15"
+            >
+              <img 
+                src="/ai-animation.gif" 
+                alt="AI Animation" 
+                className="w-full h-full object-cover rounded-[4rem] mix-blend-multiply filter grayscale opacity-40 translate-x-1/4"
+              />
+            </motion.div>
           </div>
 
           <div className="space-y-8 text-left">
