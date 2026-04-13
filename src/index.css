@@ -11,27 +11,27 @@ html {
 
 body {
   font-family: "Inter", sans-serif;
-  background-color: #fafafa;
-  color: #1a1a1a;
+  background-color: #0a0a0a;
+  color: #ffffff;
   -webkit-font-smoothing: antialiased;
 }
 
 @utility glass {
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-}
-
-@utility glass-dark {
-  background: rgba(23, 23, 23, 0.8);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+@utility glass-dark {
+  background: rgba(10, 10, 10, 0.8);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
 .text-gradient {
-  background: linear-gradient(to right, #171717, #737373);
+  background: linear-gradient(to right, #ffffff, #737373);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -44,4 +44,22 @@ body {
 
 .animate-glow-pulse {
   animation: glow-pulse 3s ease-in-out infinite;
+}
+
+/* Custom scrollbar for dark theme */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
