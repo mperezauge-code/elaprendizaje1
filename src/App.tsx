@@ -89,19 +89,6 @@ export default function App() {
               style={{ y: y2 }} 
               className="absolute top-32 -right-32 w-[32rem] h-[32rem] bg-purple-400/10 rounded-full blur-3xl"
             />
-            {/* Added AI Animation Background */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 0.15, scale: 1 }}
-              transition={{ duration: 2, ease: "easeOut" }}
-              className="absolute inset-0 flex items-center justify-center opacity-15"
-            >
-              <img 
-                src="/ai-animation.gif" 
-                alt="AI Animation" 
-                className="w-full h-full object-cover rounded-[4rem] mix-blend-multiply filter grayscale opacity-40 translate-x-1/4"
-              />
-            </motion.div>
           </div>
 
           <div className="space-y-8 text-left">
@@ -147,7 +134,72 @@ export default function App() {
 
           <FadeIn delay={0.4} className="relative">
             <div className="absolute -inset-4 bg-gradient-to-tr from-blue-500/20 via-purple-500/20 to-pink-500/20 rounded-[3rem] blur-3xl -z-10 opacity-50" />
-            <LeadForm />
+            <div className="relative group">
+              {/* Glow effect behind the GIF */}
+              <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-[2.5rem] blur-lg opacity-30 group-hover:opacity-50 transition-opacity duration-700" />
+              
+              {/* GIF Container */}
+              <div className="relative bg-neutral-900 rounded-[2.5rem] overflow-hidden border border-white/10 shadow-2xl">
+                <img 
+                  src="/ai-animation.gif" 
+                  alt="Inteligencia Artificial - EscuelitaIA" 
+                  className="w-full h-auto object-cover"
+                  loading="eager"
+                />
+                {/* Overlay gradient for depth */}
+                <div className="absolute inset-0 bg-gradient-to-t from-neutral-900/40 via-transparent to-transparent pointer-events-none" />
+                
+                {/* Floating label on the GIF */}
+                <div className="absolute bottom-6 left-6 right-6 flex items-center justify-between">
+                  <div className="flex items-center gap-3 px-5 py-3 bg-white/10 backdrop-blur-md rounded-2xl border border-white/10">
+                    <Sparkles className="w-4 h-4 text-blue-400" />
+                    <span className="text-white text-sm font-bold">Potenciado por IA</span>
+                  </div>
+                  <button 
+                    onClick={() => scrollToForm()}
+                    className="px-5 py-3 bg-blue-600 hover:bg-blue-500 text-white rounded-2xl text-sm font-bold shadow-lg shadow-blue-900/40 hover:scale-105 active:scale-95 transition-all"
+                  >
+                    Inscribite
+                  </button>
+                </div>
+              </div>
+            </div>
+          </FadeIn>
+        </section>
+
+        {/* ENROLLMENT SECTION */}
+        <section id="agendar" className="scroll-mt-24">
+          <FadeIn>
+            <div className="bg-white rounded-[4rem] p-12 md:p-20 border border-neutral-100 shadow-sm">
+              <div className="grid lg:grid-cols-2 gap-16 items-center">
+                <div className="space-y-8">
+                  <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-50 border border-emerald-100 text-xs font-black uppercase tracking-widest text-emerald-600">
+                    <Users className="w-4 h-4" />
+                    Inscripción Abierta
+                  </div>
+                  <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
+                    Asegurá tu lugar <br />
+                    <span className="text-neutral-400">en el futuro.</span>
+                  </h2>
+                  <p className="text-xl text-neutral-500 leading-relaxed">
+                    Completá tus datos y nos comunicamos con vos para darte toda la información sobre la próxima edición.
+                  </p>
+                  <div className="flex flex-wrap gap-6 text-sm text-neutral-500 font-semibold">
+                    <div className="flex items-center gap-2">
+                      <CheckCircle2 className="w-5 h-5 text-emerald-500" />
+                      Sin compromiso
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <CheckCircle2 className="w-5 h-5 text-emerald-500" />
+                      Respuesta en 24hs
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <LeadForm />
+                </div>
+              </div>
+            </div>
           </FadeIn>
         </section>
 
