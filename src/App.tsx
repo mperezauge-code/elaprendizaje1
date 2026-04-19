@@ -1,24 +1,21 @@
-import React, { useState } from "react";
-import { motion, useScroll, useTransform, AnimatePresence } from "motion/react";
+import React from "react";
+import { motion, useScroll } from "motion/react";
 import { 
-  ArrowRight, 
-  Brain, 
-  Lightbulb, 
-  MessageSquare, 
-  BarChart3, 
-  CheckCircle2, 
-  XCircle,
-  Sparkles,
-  BookOpen,
-  Target,
-  Zap,
-  ChevronRight,
   ShieldCheck,
-  X,
-  MessageCircle,
-  Users
+  ChevronRight,
+  Zap,
+  Target,
+  BookOpen,
+  Sparkles,
+  XCircle,
+  CheckCircle2,
+  BarChart3,
+  MessageSquare,
+  Lightbulb,
+  Brain,
+  ArrowRight
 } from "lucide-react";
-import LeadForm from "./components/LeadForm";
+
 
 const FadeIn = ({ children, delay = 0, className = "", ...props }: { children: React.ReactNode, delay?: number, className?: string, [key: string]: any }) => (
   <motion.div
@@ -35,19 +32,7 @@ const FadeIn = ({ children, delay = 0, className = "", ...props }: { children: R
 
 export default function App() {
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
   const { scrollY } = useScroll();
-  const y1 = useTransform(scrollY, [0, 1000], [0, 300]);
-  const y2 = useTransform(scrollY, [0, 1000], [0, -250]);
-
-  const scrollToForm = () => {
-    document.getElementById('agendar')?.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  const openInfo = () => {
-    document.getElementById('agendar')?.scrollIntoView({ behavior: 'smooth' });
-  };
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white selection:bg-blue-500/30 font-sans overflow-x-hidden relative">
@@ -63,12 +48,6 @@ export default function App() {
             <Sparkles className="w-5 h-5 text-blue-400" />
             Escuelita IA
           </div>
-          <button 
-            onClick={() => scrollToForm()}
-            className="text-sm font-bold bg-blue-600 text-white px-6 py-2.5 rounded-full hover:bg-blue-500 hover:scale-105 hover:shadow-xl hover:shadow-blue-600/30 active:scale-95 transition-all duration-300"
-          >
-            Inscribite
-          </button>
         </div>
       </nav>
 
@@ -116,21 +95,6 @@ export default function App() {
               </p>
             </FadeIn>
 
-            <FadeIn delay={0.5} className="flex flex-wrap gap-4 pt-4">
-              <button 
-                onClick={() => scrollToForm()}
-                className="group flex items-center gap-3 text-lg font-bold bg-blue-600 hover:bg-blue-500 text-white px-10 py-5 rounded-2xl shadow-2xl shadow-blue-600/30 hover:scale-[1.02] active:scale-95 transition-all"
-              >
-                Inscribirme ahora
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </button>
-              <button 
-                onClick={() => scrollToForm()}
-                className="flex items-center gap-3 text-lg font-bold bg-white/10 backdrop-blur-md hover:bg-white/20 text-white px-10 py-5 rounded-2xl border border-white/10 transition-all active:scale-95"
-              >
-                Más información
-              </button>
-            </FadeIn>
 
             <FadeIn delay={0.6} className="flex flex-wrap gap-8 pt-6 text-sm font-semibold text-neutral-400">
               <div className="flex items-center gap-2">
@@ -164,40 +128,6 @@ export default function App() {
       <main className="pb-24 px-6 max-w-6xl mx-auto space-y-32 relative z-10">
 
         {/* ENROLLMENT SECTION */}
-        <section id="agendar" className="scroll-mt-24 -mt-16">
-          <FadeIn>
-            <div className="bg-white/[0.03] rounded-[4rem] p-12 md:p-20 border border-white/10 backdrop-blur-sm">
-              <div className="grid lg:grid-cols-2 gap-16 items-center">
-                <div className="space-y-8">
-                  <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-xs font-black uppercase tracking-widest text-emerald-400">
-                    <Users className="w-4 h-4" />
-                    Inscripción Abierta
-                  </div>
-                  <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-white">
-                    Asegurá tu lugar <br />
-                    <span className="text-neutral-500">en el futuro.</span>
-                  </h2>
-                  <p className="text-xl text-neutral-400 leading-relaxed">
-                    Completá tus datos y nos comunicamos con vos para darte toda la información sobre la próxima edición.
-                  </p>
-                  <div className="flex flex-wrap gap-6 text-sm text-neutral-500 font-semibold">
-                    <div className="flex items-center gap-2">
-                      <CheckCircle2 className="w-5 h-5 text-emerald-400" />
-                      Sin compromiso
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <CheckCircle2 className="w-5 h-5 text-emerald-400" />
-                      Respuesta en 24hs
-                    </div>
-                  </div>
-                </div>
-                <div>
-                  <LeadForm variant="cta" />
-                </div>
-              </div>
-            </div>
-          </FadeIn>
-        </section>
 
         {/* 2. PROBLEMA */}
         <section className="grid lg:grid-cols-2 gap-20 items-center">
@@ -209,13 +139,6 @@ export default function App() {
             <p className="text-xl text-neutral-400 mb-10 leading-relaxed">
               El mundo avanza rápido. Muchos se sienten abrumados por la cantidad de información desordenada. En EscuelitaIA te damos el mapa.
             </p>
-            <button 
-              onClick={() => scrollToForm()}
-              className="group flex items-center gap-3 text-lg font-bold bg-white/5 border border-white/10 px-8 py-4 rounded-2xl hover:bg-white/10 transition-all active:scale-95 text-white"
-            >
-              Empezar mi transformación
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </button>
           </FadeIn>
           
           <div className="space-y-4">
@@ -251,13 +174,6 @@ export default function App() {
               <p className="text-xl text-neutral-400 mb-10 leading-relaxed">
                 Sin teoría aburrida. Vas a crear, automatizar y optimizar desde el primer encuentro.
               </p>
-              <button 
-                onClick={() => scrollToForm()}
-                className="bg-blue-600 hover:bg-blue-500 text-white px-10 py-5 rounded-2xl text-lg font-bold shadow-2xl shadow-blue-900/40 hover:scale-[1.02] active:scale-95 transition-all flex items-center gap-3"
-              >
-                Inscribirme ahora
-                <ChevronRight className="w-5 h-5" />
-              </button>
             </FadeIn>
 
             <div className="space-y-10">
@@ -342,13 +258,6 @@ export default function App() {
                     <h3 className="text-3xl font-bold mb-3 tracking-tight text-white group-hover:text-blue-400 transition-colors">{item.title}</h3>
                     <p className="text-neutral-500 text-lg leading-relaxed">{item.desc}</p>
                   </div>
-                  <button 
-                    onClick={() => openInfo()}
-                    className="flex items-center gap-2 text-sm font-bold text-neutral-600 group-hover:text-white transition-all uppercase tracking-widest group-hover:gap-4"
-                  >
-                    Me interesa este curso
-                    <ArrowRight className="w-4 h-4" />
-                  </button>
                 </div>
                 
                 {/* Decorative blob */}
@@ -406,13 +315,6 @@ export default function App() {
                     </li>
                   ))}
                 </ul>
-                <button 
-                  onClick={() => scrollToForm()}
-                  className="mt-10 w-full py-4 bg-blue-600 hover:bg-blue-500 text-white rounded-2xl font-bold text-lg transition-all flex items-center justify-center gap-3 active:scale-95 shadow-lg shadow-blue-600/30"
-                >
-                  Quiero este cambio
-                  <Zap className="w-5 h-5 fill-current" />
-                </button>
               </div>
             </FadeIn>
           </div>
@@ -447,12 +349,6 @@ export default function App() {
           </div>
 
           <FadeIn>
-            <button 
-              onClick={() => scrollToForm()}
-              className="bg-blue-600 hover:bg-blue-500 text-white px-12 py-5 rounded-full text-xl font-bold hover:scale-105 active:scale-95 transition-all shadow-2xl shadow-blue-600/30"
-            >
-              Comenzar ahora
-            </button>
           </FadeIn>
         </section>
 
@@ -502,15 +398,6 @@ export default function App() {
                   <p className="text-lg text-neutral-500">"La IA no va a reemplazarte, te va a potenciar si sabés cómo usarla."</p>
                 </div>
               </div>
-              <div className="flex flex-wrap gap-4 pt-4">
-                <button 
-                  onClick={() => setIsModalOpen(true)}
-                  className="flex items-center gap-3 bg-white/5 border border-white/10 px-8 py-4 rounded-2xl font-bold hover:bg-white/10 transition-all group active:scale-95 text-white"
-                >
-                  <MessageCircle className="w-5 h-5 text-blue-400" />
-                  Consultar información
-                </button>
-              </div>
             </FadeIn>
           </div>
         </section>
@@ -541,56 +428,6 @@ export default function App() {
               </FadeIn>
             ))}
           </div>
-          
-          <FadeIn className="text-center">
-            <p className="text-neutral-600 font-medium mb-6">¿Tenés otra pregunta específica?</p>
-            <button 
-              onClick={() => scrollToForm()}
-              className="text-white font-bold border-b-2 border-white pb-1 hover:text-blue-400 hover:border-blue-400 transition-all"
-            >
-              Contactanos directamente
-            </button>
-          </FadeIn>
-        </section>
-
-
-        {/* 7. FINAL CTA */}
-        <section id="cta" className="relative group">
-          <div className="absolute inset-0 bg-blue-900/20 rounded-[5rem] -rotate-1 group-hover:rotate-0 transition-transform duration-700" />
-          <div className="relative bg-white/[0.03] text-white rounded-[5rem] p-12 md:p-24 overflow-hidden border border-white/5 shadow-2xl">
-            <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-600/10 via-transparent to-transparent opacity-60" />
-            
-            <div className="relative z-10 grid lg:grid-cols-2 gap-20 items-center">
-              <div className="space-y-12">
-                <FadeIn className="space-y-8">
-                  <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-xs font-black uppercase tracking-widest text-blue-400">Cupos Limitados Mayo 2026</div>
-                  <h2 className="text-5xl md:text-8xl font-bold tracking-tighter leading-[0.9]">
-                    No dejes <br />
-                    que el futuro <br />
-                    <span className="text-blue-400 italic font-serif">te espere.</span>
-                  </h2>
-                  <p className="text-2xl text-neutral-500 max-w-md leading-relaxed">
-                    Convertite en el profesional que lidera con IA, no en el que intenta alcanzarla.
-                  </p>
-                  
-                  <div className="flex gap-12 border-t border-white/10 pt-12">
-                    <div className="space-y-2">
-                      <div className="text-4xl font-bold text-white">+500</div>
-                      <div className="text-xs text-neutral-600 uppercase tracking-[0.2em] font-black">Alumnos</div>
-                    </div>
-                    <div className="space-y-2">
-                      <div className="text-4xl font-bold text-white">100%</div>
-                      <div className="text-xs text-neutral-600 uppercase tracking-[0.2em] font-black">Práctico</div>
-                    </div>
-                  </div>
-                </FadeIn>
-              </div>
-
-              <div id="form-cta">
-                <LeadForm variant="cta" />
-              </div>
-            </div>
-          </div>
         </section>
 
       </main>
@@ -604,14 +441,7 @@ export default function App() {
               <span className="font-bold text-2xl tracking-tighter text-white">Escuelita IA</span>
             </div>
             <p className="text-neutral-500 max-w-sm">Dando las herramientas para que el futuro sea una oportunidad y no una amenaza.</p>
-            <div className="flex justify-center md:justify-start gap-4">
-              <button 
-                onClick={() => scrollToForm()}
-                className="text-sm font-bold bg-blue-600 text-white hover:bg-blue-500 px-6 py-3 rounded-xl transition-all"
-              >
-                Solicitar admisión
-              </button>
-            </div>
+            <p className="text-xl font-bold text-blue-400">Pronto habilitaremos más información para solicitar admisión.</p>
           </FadeIn>
           
           <FadeIn className="text-center md:text-right space-y-4">
@@ -621,33 +451,6 @@ export default function App() {
         </div>
       </footer>
 
-      {/* LEAD MODAL */}
-      <AnimatePresence>
-        {isModalOpen && (
-          <div className="fixed inset-0 z-[100] flex items-center justify-center p-6">
-            <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setIsModalOpen(false)}
-              className="absolute inset-0 bg-black/60 backdrop-blur-sm"
-            />
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              className="relative z-10 w-full max-w-lg"
-            >
-              <LeadForm 
-                variant="modal" 
-                onClose={() => setIsModalOpen(false)}
-                title="¿Te interesa este módulo?"
-                subtitle="Dejanos tus datos para enviarte el programa detallado y el costo de la próxima edición."
-              />
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
     </div>
   );
 }
